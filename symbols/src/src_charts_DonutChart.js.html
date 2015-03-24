@@ -1,0 +1,255 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">/**
+<span class='line'>  3</span>  * @fileoverview Simple donut chart implementation.
+<span class='line'>  4</span>  * @version 1.0.1
+<span class='line'>  5</span>  * @link http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
+<span class='line'>  6</span>  * @link https://developers.google.com/closure/compiler/docs/js-for-compiler
+<span class='line'>  7</span>  */</span><span class="WHIT">
+<span class='line'>  8</span> 
+<span class='line'>  9</span> 
+<span class='line'> 10</span> 
+<span class='line'> 11</span> </span><span class="COMM">/**
+<span class='line'> 12</span>  * DonutChart constructor.
+<span class='line'> 13</span>  * @param {string|Element} container The HTML container.
+<span class='line'> 14</span>  * @constructor
+<span class='line'> 15</span>  * @extends {charts.PieChart} charts.PieChart
+<span class='line'> 16</span>  * @requires formatters.NumberFormatter
+<span class='line'> 17</span>  * @example
+<span class='line'> 18</span>  * &lt;b>var&lt;/b> chart = &lt;b>new&lt;/b> charts.DonutChart('container_id');
+<span class='line'> 19</span>  * chart.draw([['Work', 'Eat', 'Commute', 'Watch TV', 'Sleep'],
+<span class='line'> 20</span>  *             [100, 50, 30, 10, 40], [140, 2, 110, 150, 1300]]);
+<span class='line'> 21</span>  *
+<span class='line'> 22</span>  * &lt;div style="border: solid 1px #ccc; margin: 5px; padding: 5px; width: 560px">
+<span class='line'> 23</span>  *   &lt;div id="chart-container"
+<span class='line'> 24</span>  *        style="width: 560px; height: 300px;">&lt;/div>
+<span class='line'> 25</span>  * &lt;/div>
+<span class='line'> 26</span>  * &lt;script src="../../bin/jscb.js">&lt;/script>
+<span class='line'> 27</span>  * &lt;script>
+<span class='line'> 28</span>  *   var chart = new charts.DonutChart('chart-container');
+<span class='line'> 29</span>  *   chart.draw([['Work', 'Eat', 'Commute', 'Watch TV', 'Sleep'],
+<span class='line'> 30</span>  *               [100, 50, 30, 10, 40], [140, 2, 110, 150, 1300]]);
+<span class='line'> 31</span>  * &lt;/script>
+<span class='line'> 32</span>  */</span><span class="WHIT">
+<span class='line'> 33</span> </span><span class="NAME">charts.DonutChart</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">container</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 34</span> </span><span class="WHIT">  </span><span class="NAME">charts.PieChart.apply</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">arguments</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 35</span> 
+<span class='line'> 36</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 37</span>    * Saved reference to charts.PieChart.draw method.
+<span class='line'> 38</span>    * @type {!function(!Array.&lt;Array>, Object=)}
+<span class='line'> 39</span>    * @private
+<span class='line'> 40</span>    */</span><span class="WHIT">
+<span class='line'> 41</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">draw_</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.draw</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 42</span> 
+<span class='line'> 43</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 44</span>    * Draws the chart based on &lt;code>data&lt;/code> and &lt;code>opt_options&lt;/code>.
+<span class='line'> 45</span>    * @param {!Array.&lt;Array>} data A chart data.
+<span class='line'> 46</span>    * @param {Object=} opt_options A optional chart's configuration options.
+<span class='line'> 47</span>    * @override
+<span class='line'> 48</span>    * @see charts.PieChart#draw
+<span class='line'> 49</span>    * @see charts.BaseChart#getOptions
+<span class='line'> 50</span>    * @example
+<span class='line'> 51</span>    * options: {
+<span class='line'> 52</span>    *   'donut': {'color': '#fff', 'radius': 0.5}
+<span class='line'> 53</span>    * }
+<span class='line'> 54</span>    */</span><span class="WHIT">
+<span class='line'> 55</span> </span><span class="WHIT">  </span><span class="NAME">this.draw</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">data</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">opt_options</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 56</span> </span><span class="WHIT">    </span><span class="COMM">/** @type {number} */</span><span class="WHIT"> </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">width</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">self_.container.offsetWidth</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="NUMB">200</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 57</span> </span><span class="WHIT">    </span><span class="COMM">/** @type {number} */</span><span class="WHIT"> </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">height</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">self_.container.offsetHeight</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="NAME">width</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 58</span> </span><span class="WHIT">    </span><span class="NAME">draw_</span><span class="PUNC">(</span><span class="NAME">data</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">opt_options</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 59</span> </span><span class="WHIT">    </span><span class="NAME">self_.container.style.visibility</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'hidden'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 60</span> </span><span class="WHIT">    </span><span class="NAME">data_</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">data</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 61</span> </span><span class="WHIT">    </span><span class="NAME">options_</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">getOptions_</span><span class="PUNC">(</span><span class="NAME">opt_options</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 62</span> </span><span class="WHIT">    </span><span class="NAME">formatter_</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">formatters.NumberFormatter</span><span class="PUNC">(</span><span class="WHIT">
+<span class='line'> 63</span> </span><span class="WHIT">        </span><span class="COMM">/** @type {Object.&lt;string,*>} */</span><span class="PUNC">(</span><span class="NAME">options_</span><span class="PUNC">[</span><span class="STRN">'formatter'</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 64</span> 
+<span class='line'> 65</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">options_</span><span class="PUNC">[</span><span class="STRN">'donut'</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">options_</span><span class="PUNC">[</span><span class="STRN">'donut'</span><span class="PUNC">]</span><span class="PUNC">[</span><span class="STRN">'radius'</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 66</span> </span><span class="WHIT">      </span><span class="COMM">/** @type {number} */</span><span class="WHIT"> </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">x</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">width</span><span class="WHIT"> </span><span class="PUNC">/</span><span class="WHIT"> </span><span class="NUMB">2</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 67</span> </span><span class="WHIT">      </span><span class="COMM">/** @type {number} */</span><span class="WHIT"> </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">y</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">height</span><span class="WHIT"> </span><span class="PUNC">/</span><span class="WHIT"> </span><span class="NUMB">2</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 68</span> </span><span class="WHIT">      </span><span class="COMM">/** @type {number} */</span><span class="WHIT">
+<span class='line'> 69</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">radius</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">Math.min</span><span class="PUNC">(</span><span class="NAME">width</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">height</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">/</span><span class="WHIT"> </span><span class="NUMB">2</span><span class="WHIT"> </span><span class="PUNC">*</span><span class="WHIT"> </span><span class="NAME">options_</span><span class="PUNC">[</span><span class="STRN">'donut'</span><span class="PUNC">]</span><span class="PUNC">[</span><span class="STRN">'radius'</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 70</span> </span><span class="WHIT">      </span><span class="COMM">/** @type {string} */</span><span class="WHIT"> </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">content</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">charts.IS_SVG_SUPPORTED</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT">
+<span class='line'> 71</span> </span><span class="WHIT">          </span><span class="NAME">getSvgContent_</span><span class="PUNC">(</span><span class="NAME">x</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">y</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">radius</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">getVmlContent_</span><span class="PUNC">(</span><span class="NAME">x</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">y</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">radius</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 72</span> </span><span class="WHIT">      </span><span class="NAME">self_.drawContent</span><span class="PUNC">(</span><span class="NAME">content</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">width</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">height</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 73</span> 
+<span class='line'> 74</span> </span><span class="WHIT">      </span><span class="COMM">/** @type {number} */</span><span class="WHIT"> </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">timer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">setTimeout</span><span class="PUNC">(</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 75</span> </span><span class="WHIT">        </span><span class="COMM">/** @type {Node} */</span><span class="WHIT"> </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">pie</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">self_.container.childNodes</span><span class="PUNC">[</span><span class="NUMB">0</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 76</span> </span><span class="WHIT">        </span><span class="COMM">/** @type {Node} */</span><span class="WHIT"> </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">donut</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">self_.container.childNodes</span><span class="PUNC">[</span><span class="NUMB">1</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 77</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">charts.IS_SVG_SUPPORTED</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">donut</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 78</span> </span><span class="WHIT">          </span><span class="KEYW">while</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">donut.firstChild</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">pie.appendChild</span><span class="PUNC">(</span><span class="NAME">donut.firstChild</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 79</span> </span><span class="WHIT">          </span><span class="NAME">self_.container.removeChild</span><span class="PUNC">(</span><span class="NAME">donut</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 80</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 81</span> </span><span class="WHIT">        </span><span class="NAME">clearTimeout</span><span class="PUNC">(</span><span class="NAME">timer</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 82</span> </span><span class="WHIT">        </span><span class="NAME">self_.container.style.visibility</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'visible'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 83</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 84</span> 
+<span class='line'> 85</span> </span><span class="WHIT">      </span><span class="NAME">setAreaContent_</span><span class="PUNC">(</span><span class="NAME">x</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">y</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">radius</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 86</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 87</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 88</span> 
+<span class='line'> 89</span> </span><span class="WHIT">  </span><span class="COMM">// Export for closure compiler.</span><span class="WHIT">
+<span class='line'> 90</span> </span><span class="WHIT">  </span><span class="KEYW">this</span><span class="PUNC">[</span><span class="STRN">'draw'</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.draw</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 91</span> 
+<span class='line'> 92</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 93</span>    * Gets circle area content.
+<span class='line'> 94</span>    * @return {string} Returns circle area content.
+<span class='line'> 95</span>    * @protected
+<span class='line'> 96</span>    * @expose
+<span class='line'> 97</span>    */</span><span class="WHIT">
+<span class='line'> 98</span> </span><span class="WHIT">  </span><span class="NAME">this.getAreaContent</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 99</span> </span><span class="WHIT">    </span><span class="COMM">// The @expose annotation fixes closure compiler multi-inheritance bug.</span><span class="WHIT">
+<span class='line'>100</span> </span><span class="WHIT">    </span><span class="COMM">/** @type {string} */</span><span class="WHIT">
+<span class='line'>101</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">content</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'&lt;div style="color:#666;font-size:22px;margin-bottom:3px;">'</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'>102</span> </span><span class="WHIT">                  </span><span class="NAME">formatter_.round</span><span class="PUNC">(</span><span class="NAME">getTotal_</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">'&lt;/div>'</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'>103</span> </span><span class="WHIT">                  </span><span class="STRN">'&lt;div style="color:#B3B0B0;font-size:11px">TOTAL&lt;/div>'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>104</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">content</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>105</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>106</span> 
+<span class='line'>107</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>108</span>    * @param {number} x The X coord.
+<span class='line'>109</span>    * @param {number} y The Y coord.
+<span class='line'>110</span>    * @param {number} radius The donut radius.
+<span class='line'>111</span>    * @private
+<span class='line'>112</span>    */</span><span class="WHIT">
+<span class='line'>113</span> </span><span class="WHIT">  </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="NAME">setAreaContent_</span><span class="PUNC">(</span><span class="NAME">x</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">y</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">radius</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>114</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">area_</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>115</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">size</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">Math.sqrt</span><span class="PUNC">(</span><span class="NAME">radius</span><span class="WHIT"> </span><span class="PUNC">*</span><span class="WHIT"> </span><span class="NAME">radius</span><span class="WHIT"> </span><span class="PUNC">/</span><span class="WHIT"> </span><span class="NUMB">2</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">*</span><span class="WHIT"> </span><span class="NUMB">2</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>116</span> 
+<span class='line'>117</span> </span><span class="WHIT">      </span><span class="NAME">area_</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">self_.container.appendChild</span><span class="PUNC">(</span><span class="NAME">dom.createElement</span><span class="PUNC">(</span><span class="STRN">'DIV'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>118</span> </span><span class="WHIT">      </span><span class="NAME">area_.style.position</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'absolute'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>119</span> </span><span class="WHIT">      </span><span class="NAME">area_.style.width</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">size</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">'px'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>120</span> </span><span class="WHIT">      </span><span class="NAME">area_.style.height</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">size</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">'px'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>121</span> </span><span class="WHIT">      </span><span class="NAME">area_.style.left</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">x</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">size</span><span class="WHIT"> </span><span class="PUNC">/</span><span class="WHIT"> </span><span class="NUMB">2</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">'px'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>122</span> </span><span class="WHIT">      </span><span class="NAME">area_.style.top</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">y</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">size</span><span class="WHIT"> </span><span class="PUNC">/</span><span class="WHIT"> </span><span class="NUMB">2</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">'px'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>123</span> </span><span class="WHIT">      </span><span class="NAME">area_.style.fontFamily</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">options_</span><span class="PUNC">[</span><span class="STRN">'font'</span><span class="PUNC">]</span><span class="PUNC">[</span><span class="STRN">'family'</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>124</span> </span><span class="WHIT">      </span><span class="NAME">area_.innerHTML</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'&lt;table style="width:100%;height:100%;'</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'>125</span> </span><span class="WHIT">                        </span><span class="COMM">//'text-shadow:1px 1px 2px red;letter-spacing:-1px;' +</span><span class="WHIT">
+<span class='line'>126</span> </span><span class="WHIT">                        </span><span class="STRN">'text-align:center;vertical-align:middle">&lt;tr>&lt;td>'</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'>127</span> </span><span class="WHIT">                        </span><span class="STRN">'&lt;/td>&lt;/tr>&lt;/table>'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>128</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>129</span> 
+<span class='line'>130</span> </span><span class="WHIT">    </span><span class="NAME">dom.getElementsByTagName</span><span class="PUNC">(</span><span class="WHIT">
+<span class='line'>131</span> </span><span class="WHIT">        </span><span class="NAME">area_</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'TD'</span><span class="PUNC">)</span><span class="PUNC">[</span><span class="NUMB">0</span><span class="PUNC">]</span><span class="PUNC">.</span><span class="NAME">innerHTML</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">self_.getAreaContent</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>132</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>133</span> 
+<span class='line'>134</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>135</span>    * @return {number} Returns sum of data values.
+<span class='line'>136</span>    * @private
+<span class='line'>137</span>    */</span><span class="WHIT">
+<span class='line'>138</span> </span><span class="WHIT">  </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="NAME">getTotal_</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>139</span> </span><span class="WHIT">    </span><span class="COMM">/** @type {number} */</span><span class="WHIT"> </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">total</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>140</span> </span><span class="WHIT">    </span><span class="COMM">/** @type {!Array.&lt;Array>} */</span><span class="WHIT"> </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">rows</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">self_.getDataRows</span><span class="PUNC">(</span><span class="NAME">data_</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>141</span> </span><span class="WHIT">    </span><span class="KEYW">for</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="COMM">/** @type {number} */</span><span class="WHIT"> </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">i</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">i</span><span class="WHIT"> </span><span class="PUNC">&lt;</span><span class="WHIT"> </span><span class="NAME">rows.length</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">i</span><span class="PUNC">++</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>142</span> </span><span class="WHIT">      </span><span class="COMM">/** @type {Array} */</span><span class="WHIT"> </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">row</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">rows</span><span class="PUNC">[</span><span class="NAME">i</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>143</span> </span><span class="WHIT">      </span><span class="KEYW">for</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="COMM">/** @type {number} */</span><span class="WHIT"> </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">j</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">j</span><span class="WHIT"> </span><span class="PUNC">&lt;</span><span class="WHIT"> </span><span class="NAME">row.length</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">j</span><span class="PUNC">++</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>144</span> </span><span class="WHIT">        </span><span class="NAME">total</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">row</span><span class="PUNC">[</span><span class="NAME">j</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>145</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>146</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>147</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">total</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>148</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>149</span> 
+<span class='line'>150</span> 
+<span class='line'>151</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>152</span>    * @param {number} x The X coord.
+<span class='line'>153</span>    * @param {number} y The Y coord.
+<span class='line'>154</span>    * @param {number} radius The donut radius.
+<span class='line'>155</span>    * @return {string} Returns donut SVG markup.
+<span class='line'>156</span>    * @private
+<span class='line'>157</span>    */</span><span class="WHIT">
+<span class='line'>158</span> </span><span class="WHIT">  </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="NAME">getSvgContent_</span><span class="PUNC">(</span><span class="NAME">x</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">y</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">radius</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>159</span> </span><span class="WHIT">    </span><span class="COMM">/** @type {string} */</span><span class="WHIT"> </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">result</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">formatter_.round</span><span class="PUNC">(</span><span class="NAME">getTotal_</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>160</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="STRN">'&lt;g>'</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'>161</span> </span><span class="WHIT">        </span><span class="STRN">'&lt;circle cx="'</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">x</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">'" cy="'</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">y</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">'" r="'</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'>162</span> </span><span class="WHIT">        </span><span class="NAME">radius</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">'" fill="'</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">options_</span><span class="PUNC">[</span><span class="STRN">'donut'</span><span class="PUNC">]</span><span class="PUNC">[</span><span class="STRN">'color'</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">'"/>'</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'>163</span> 
+<span class='line'>164</span> </span><span class="WHIT">        </span><span class="COMM">// '&lt;circle cx="' + x + '" cy="' + y + '" r="' +</span><span class="WHIT">
+<span class='line'>165</span> </span><span class="WHIT">        </span><span class="COMM">// radius + '" fill="' + options_['donut']['color'] + '">' +</span><span class="WHIT">
+<span class='line'>166</span> </span><span class="WHIT">        </span><span class="COMM">// '&lt;animate attributeName="r" from="' +</span><span class="WHIT">
+<span class='line'>167</span> </span><span class="WHIT">        </span><span class="COMM">// radius + '" to="' +</span><span class="WHIT">
+<span class='line'>168</span> </span><span class="WHIT">        </span><span class="COMM">// (radius * 1.2) + '" begin="0.4s" dur="0.1s"/>' +</span><span class="WHIT">
+<span class='line'>169</span> </span><span class="WHIT">        </span><span class="COMM">// '&lt;animate attributeName="r" from="' +</span><span class="WHIT">
+<span class='line'>170</span> </span><span class="WHIT">        </span><span class="COMM">// (radius * 1.2) + '" to="' + radius + '" begin="0.5s" dur="0.1s"/>' +</span><span class="WHIT">
+<span class='line'>171</span> </span><span class="WHIT">        </span><span class="COMM">// '&lt;/circle>' +</span><span class="WHIT">
+<span class='line'>172</span> 
+<span class='line'>173</span> </span><span class="WHIT">        </span><span class="STRN">'&lt;/g>'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>174</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>175</span> 
+<span class='line'>176</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>177</span>    * @param {number} x The X coord.
+<span class='line'>178</span>    * @param {number} y The Y coord.
+<span class='line'>179</span>    * @param {number} radius The donut radius.
+<span class='line'>180</span>    * @return {string} Returns donut VML markup.
+<span class='line'>181</span>    * @private
+<span class='line'>182</span>    */</span><span class="WHIT">
+<span class='line'>183</span> </span><span class="WHIT">  </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="NAME">getVmlContent_</span><span class="PUNC">(</span><span class="NAME">x</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">y</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">radius</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>184</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">total</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">getTotal_</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>185</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="STRN">'&lt;v:oval fillcolor="'</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">options_</span><span class="PUNC">[</span><span class="STRN">'donut'</span><span class="PUNC">]</span><span class="PUNC">[</span><span class="STRN">'color'</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">'" '</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'>186</span> </span><span class="WHIT">        </span><span class="STRN">'style="'</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'>187</span> </span><span class="WHIT">        </span><span class="STRN">'top:'</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">y</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">radius</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">'px;'</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'>188</span> </span><span class="WHIT">        </span><span class="STRN">'left:'</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">x</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">radius</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">'px;'</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'>189</span> </span><span class="WHIT">        </span><span class="STRN">'width:'</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">radius</span><span class="WHIT"> </span><span class="PUNC">*</span><span class="WHIT"> </span><span class="NUMB">2</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">'px;'</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'>190</span> </span><span class="WHIT">        </span><span class="STRN">'height:'</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">radius</span><span class="WHIT"> </span><span class="PUNC">*</span><span class="WHIT"> </span><span class="NUMB">2</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">'px;'</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'>191</span> </span><span class="WHIT">        </span><span class="STRN">'" stroked="false">'</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'>192</span> </span><span class="WHIT">        </span><span class="STRN">'&lt;/v:oval>'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>193</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>194</span> 
+<span class='line'>195</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>196</span>    * Gets chart's options merged with defaults chart's options.
+<span class='line'>197</span>    * &lt;code>&lt;pre> defaults: {
+<span class='line'>198</span>    *   'donut': {'color': '#fff', 'radius': 0.5}
+<span class='line'>199</span>    * }&lt;/pre>&lt;/code>
+<span class='line'>200</span>    * @param {Object=} opt_options A optional chart's configuration options.
+<span class='line'>201</span>    * @return {!Object.&lt;string, *>} A map of name/value pairs.
+<span class='line'>202</span>    * @see charts.BaseChart#getOptions
+<span class='line'>203</span>    * @private
+<span class='line'>204</span>    */</span><span class="WHIT">
+<span class='line'>205</span> </span><span class="WHIT">  </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="NAME">getOptions_</span><span class="PUNC">(</span><span class="NAME">opt_options</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>206</span> </span><span class="WHIT">    </span><span class="NAME">opt_options</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">opt_options</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>207</span> </span><span class="WHIT">    </span><span class="NAME">opt_options</span><span class="PUNC">[</span><span class="STRN">'donut'</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">opt_options</span><span class="PUNC">[</span><span class="STRN">'donut'</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>208</span> </span><span class="WHIT">    </span><span class="NAME">opt_options</span><span class="PUNC">[</span><span class="STRN">'donut'</span><span class="PUNC">]</span><span class="PUNC">[</span><span class="STRN">'color'</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">opt_options</span><span class="PUNC">[</span><span class="STRN">'donut'</span><span class="PUNC">]</span><span class="PUNC">[</span><span class="STRN">'color'</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="STRN">'#fff'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>209</span> </span><span class="WHIT">    </span><span class="NAME">opt_options</span><span class="PUNC">[</span><span class="STRN">'donut'</span><span class="PUNC">]</span><span class="PUNC">[</span><span class="STRN">'radius'</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">opt_options</span><span class="PUNC">[</span><span class="STRN">'donut'</span><span class="PUNC">]</span><span class="PUNC">[</span><span class="STRN">'radius'</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="NUMB">0.5</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>210</span> </span><span class="WHIT">    </span><span class="NAME">opt_options</span><span class="PUNC">[</span><span class="STRN">'formatter'</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">opt_options</span><span class="PUNC">[</span><span class="STRN">'formatter'</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>211</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">self_.getOptions</span><span class="PUNC">(</span><span class="NAME">opt_options</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>212</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>213</span> 
+<span class='line'>214</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>215</span>    * The reference to current class instance. Used in private methods.
+<span class='line'>216</span>    * @type {!charts.DonutChart}
+<span class='line'>217</span>    * @private
+<span class='line'>218</span>    */</span><span class="WHIT">
+<span class='line'>219</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">self_</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>220</span> 
+<span class='line'>221</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>222</span>    * @type {Array.&lt;Array>}
+<span class='line'>223</span>    * @private
+<span class='line'>224</span>    */</span><span class="WHIT">
+<span class='line'>225</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">data_</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>226</span> 
+<span class='line'>227</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>228</span>    * @dict
+<span class='line'>229</span>    * @private
+<span class='line'>230</span>    */</span><span class="WHIT">
+<span class='line'>231</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">options_</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>232</span> 
+<span class='line'>233</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>234</span>    * @type {formatters.NumberFormatter}
+<span class='line'>235</span>    * @private
+<span class='line'>236</span>    */</span><span class="WHIT">
+<span class='line'>237</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">formatter_</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>238</span> 
+<span class='line'>239</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>240</span>    * @type {Node}
+<span class='line'>241</span>    * @private
+<span class='line'>242</span>    */</span><span class="WHIT">
+<span class='line'>243</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">area_</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>244</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>245</span> 
+<span class='line'>246</span> </span><span class="COMM">// Export for closure compiler.</span><span class="WHIT">
+<span class='line'>247</span> </span><span class="NAME">charts</span><span class="PUNC">[</span><span class="STRN">'DonutChart'</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">charts.DonutChart</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>248</span> </span></pre></body></html>

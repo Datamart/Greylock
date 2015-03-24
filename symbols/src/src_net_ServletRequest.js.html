@@ -1,0 +1,81 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">/**
+<span class='line'>  3</span>  * @fileoverview Simple implementation of javax.servlet.ServletRequest.
+<span class='line'>  4</span>  * @see http://docs.oracle.com/javaee/5/api/javax/servlet/ServletRequest.html
+<span class='line'>  5</span>  * @see http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
+<span class='line'>  6</span>  * @see https://developers.google.com/closure/compiler/docs/js-for-compiler
+<span class='line'>  7</span>  */</span><span class="WHIT">
+<span class='line'>  8</span> 
+<span class='line'>  9</span> 
+<span class='line'> 10</span> 
+<span class='line'> 11</span> </span><span class="COMM">/**
+<span class='line'> 12</span>  * Simple implementation of javax.servlet.ServletRequest.
+<span class='line'> 13</span>  * @requires util.StringUtils.URI
+<span class='line'> 14</span>  * @constructor
+<span class='line'> 15</span>  * @see http://docs.oracle.com/javaee/5/api/javax/servlet/ServletRequest.html
+<span class='line'> 16</span>  */</span><span class="WHIT">
+<span class='line'> 17</span> </span><span class="NAME">net.ServletRequest</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 18</span> 
+<span class='line'> 19</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 20</span>    * Returns the value of a request parameter as a string, or empty string if
+<span class='line'> 21</span>    * the parameter does not exist.
+<span class='line'> 22</span>    * @param {string} name A &lt;code>string&lt;/code> specifying the name of the
+<span class='line'> 23</span>    *     parameter.
+<span class='line'> 24</span>    * @param {Element|Location|string=} opt_location Optional location.
+<span class='line'> 25</span>    * @return {string} Returns a &lt;code>string&lt;/code> representing the single
+<span class='line'> 26</span>    *     value of the parameter.
+<span class='line'> 27</span>    * @this {net.ServletRequest}
+<span class='line'> 28</span>    */</span><span class="WHIT">
+<span class='line'> 29</span> </span><span class="WHIT">  </span><span class="NAME">this.getParameter</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">name</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">opt_location</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 30</span> </span><span class="WHIT">    </span><span class="COMM">/** @type {!Object.&lt;string, string>} */</span><span class="WHIT">
+<span class='line'> 31</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">map</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.getParameterMap</span><span class="PUNC">(</span><span class="NAME">opt_location</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 32</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">map</span><span class="PUNC">[</span><span class="COMM">/** @type {string} */</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">name</span><span class="PUNC">)</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="STRN">''</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 33</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 34</span> 
+<span class='line'> 35</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 36</span>    * Returns a map of the parameters of this request including parameters from
+<span class='line'> 37</span>    * parsed from query string and hash.
+<span class='line'> 38</span>    * @param {Element|Location|string=} opt_location Optional location.
+<span class='line'> 39</span>    * @return {!Object.&lt;string, string>} Map containing parameter names as keys
+<span class='line'> 40</span>    *     and parameter values as map values.
+<span class='line'> 41</span>    */</span><span class="WHIT">
+<span class='line'> 42</span> </span><span class="WHIT">  </span><span class="NAME">this.getParameterMap</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">opt_location</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 43</span> </span><span class="WHIT">    </span><span class="COMM">/** @type {!Object.&lt;string, string>} */</span><span class="WHIT"> </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">map</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 44</span> </span><span class="WHIT">    </span><span class="COMM">/** @type {!Array.&lt;string>} */</span><span class="WHIT"> </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">pairs</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">parseLocation_</span><span class="PUNC">(</span><span class="NAME">opt_location</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 45</span> </span><span class="WHIT">    </span><span class="COMM">/** @type {number} */</span><span class="WHIT"> </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">index</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">pairs.length</span><span class="WHIT"> </span><span class="PUNC">>>></span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 46</span> </span><span class="WHIT">    </span><span class="KEYW">while</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">index</span><span class="PUNC">--</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 47</span> </span><span class="WHIT">      </span><span class="COMM">/** @type {!Array.&lt;string>} */</span><span class="WHIT"> </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">pair</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">pairs</span><span class="PUNC">[</span><span class="NAME">index</span><span class="PUNC">]</span><span class="PUNC">.</span><span class="NAME">split</span><span class="PUNC">(</span><span class="STRN">'='</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 48</span> </span><span class="WHIT">      </span><span class="COMM">/** @type {string} */</span><span class="WHIT"> </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">key</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">pair</span><span class="PUNC">[</span><span class="NUMB">0</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 49</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">key</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">map</span><span class="PUNC">[</span><span class="NAME">key</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">util.StringUtils.URI.decode</span><span class="PUNC">(</span><span class="NAME">pair</span><span class="PUNC">[</span><span class="NUMB">1</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 50</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 51</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">map</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 52</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 53</span> 
+<span class='line'> 54</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 55</span>    * Gets list of parameters pairs parsed form &lt;code>opt_location&lt;/code>.
+<span class='line'> 56</span>    * @param {Element|Location|string=} opt_location Optional location.
+<span class='line'> 57</span>    * @return {!Array.&lt;string>} Returns list of parameters pairs.
+<span class='line'> 58</span>    * @private
+<span class='line'> 59</span>    */</span><span class="WHIT">
+<span class='line'> 60</span> </span><span class="WHIT">  </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="NAME">parseLocation_</span><span class="PUNC">(</span><span class="NAME">opt_location</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 61</span> </span><span class="WHIT">    </span><span class="NAME">opt_location</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">opt_location</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="NAME">location</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 62</span> 
+<span class='line'> 63</span> </span><span class="WHIT">    </span><span class="COMM">/** @type {string} */</span><span class="WHIT"> </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">hash</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'string'</span><span class="WHIT"> </span><span class="PUNC">==</span><span class="WHIT"> </span><span class="KEYW">typeof</span><span class="WHIT"> </span><span class="NAME">opt_location</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT">
+<span class='line'> 64</span> </span><span class="WHIT">        </span><span class="PUNC">(</span><span class="NAME">opt_location.split</span><span class="PUNC">(</span><span class="STRN">'#'</span><span class="PUNC">)</span><span class="PUNC">[</span><span class="NUMB">1</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="STRN">''</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT">
+<span class='line'> 65</span> </span><span class="WHIT">        </span><span class="NAME">opt_location.hash.substr</span><span class="PUNC">(</span><span class="NUMB">1</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 66</span> 
+<span class='line'> 67</span> </span><span class="WHIT">    </span><span class="COMM">/** @type {string} */</span><span class="WHIT"> </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">query</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'string'</span><span class="WHIT"> </span><span class="PUNC">==</span><span class="WHIT"> </span><span class="KEYW">typeof</span><span class="WHIT"> </span><span class="NAME">opt_location</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT">
+<span class='line'> 68</span> </span><span class="WHIT">        </span><span class="PUNC">(</span><span class="NAME">opt_location.split</span><span class="PUNC">(</span><span class="STRN">'?'</span><span class="PUNC">)</span><span class="PUNC">[</span><span class="NUMB">1</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="STRN">''</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">split</span><span class="PUNC">(</span><span class="STRN">'#'</span><span class="PUNC">)</span><span class="PUNC">[</span><span class="NUMB">0</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT">
+<span class='line'> 69</span> </span><span class="WHIT">        </span><span class="NAME">opt_location.search.substr</span><span class="PUNC">(</span><span class="NUMB">1</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 70</span> 
+<span class='line'> 71</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">query.split</span><span class="PUNC">(</span><span class="STRN">'&'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">concat</span><span class="PUNC">(</span><span class="NAME">hash.split</span><span class="PUNC">(</span><span class="STRN">'&'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 72</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 73</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 74</span> </span></pre></body></html>
