@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<title>HTML5 Controls</title>
+
+<script src="../../dom/__ns__.js"></script>
+<script src="../../dom/EventDispatcher.js"></script>
+<script src="../../util/__ns__.js"></script>
+<script src="../../util/Locale.js"></script>
+<script src="../../locale/__ns__.js"></script>
+<script src="../../locale/Calendar.js"></script>
+<script src="../../formatters/__ns__.js"></script>
+<script src="../../formatters/DateFormatter.js"></script>
+<script src="../__ns__.js"></script>
+<script src="../Calendar.js"></script>
+<script src="../DatePicker.js"></script>
+
+<script src="__ns__.js"></script>
+<script src="InputNumber.js"></script>
+<script src="InputDate.js"></script>
+<script src="InputRange.js"></script>
+
+
+<!--script src="../../bin/jscb.js"></script-->
+<style>
+table.calendar {border: solid 1px gray; border-collapse: collapse; background: white;}
+table.calendar thead {background: silver;}
+table.calendar td,
+table.calendar th {border: solid 1px gray;}
+table.calendar td.today {font-weight: bold; background: silver;}
+table.calendar td.active {font-weight: bold; background: blue; color: white;}
+table.calendar th.prev,
+table.calendar th.next {cursor: pointer;}
+</style>
+</head>
+<body>
+  <form>
+    <fieldset>
+      <legend>InputNumber</legend>
+
+      <label>&lt;input type="number"&gt;: </label>
+      <input id="number1" type="number"><br>
+      <script>new controls.html5.InputNumber('number1')</script>
+
+      <label>&lt;input type="number" min="0" max="5"&gt;: </label>
+      <input id="number2" type="number" min="0" max="5"><br>
+      <script>new controls.html5.InputNumber('number2')</script>
+
+      <label>&lt;input type="number" onchange="console.log(this.value)"&gt;: </label>
+      <input id="number3" type="number" onchange="console.log(this.value)"><br>
+      <script>new controls.html5.InputNumber('number3')</script>
+
+      <label>&lt;input type="number" step="5"&gt;: </label>
+      <input id="number4" type="number" step="5"><br>
+      <script>new controls.html5.InputNumber('number4')</script>
+
+      <label>&lt;input type="text"&gt;: </label>
+      <input id="number5" type="text"><br>
+      <script>new controls.html5.InputNumber('number5')</script>
+    </fieldset>
+
+    <p></p>
+    <fieldset>
+      <legend>InputDate (Draft)</legend>
+
+      <label>&lt;input type="date"&gt;: </label>
+      <input id="date1" type="date"><br>
+      <script>new controls.html5.InputDate('date1')</script>
+
+      <label>&lt;input type="date" max="2013-06-07"&gt;: </label>
+      <input id="date2" type="date" max="2013-06-07"><br>
+      <script>new controls.html5.InputDate('date2')</script>
+
+      <label>&lt;input type="date" min="2013-06-07"&gt;: </label>
+      <input id="date3" type="date" min="2013-06-07"><br>
+      <script>new controls.html5.InputDate('date3')</script>
+
+      <label>&lt;input type="text"&gt;: </label>
+      <input id="date4" type="text"><br>
+      <script>new controls.html5.InputDate('date4')</script>
+    </fieldset>
+
+    <p></p>
+    <fieldset>
+      <legend>InputRange (Draft)</legend>
+
+      <label>&lt;input type="range"&gt;: </label>
+      <input id="range1" type="range"><br>
+      <script>new controls.html5.InputRange('range1')</script>
+      
+    </fieldset>
+  </form>
+</body>
+</html>

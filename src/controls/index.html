@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<title>Controls</title>
+
+<script src="../dom/__ns__.js"></script>
+<script src="../dom/EventDispatcher.js"></script>
+<script src="../util/__ns__.js"></script>
+<script src="../util/Locale.js"></script>
+<script src="../locale/__ns__.js"></script>
+<script src="../locale/Calendar.js"></script>
+<script src="../formatters/__ns__.js"></script>
+<script src="../formatters/DateFormatter.js"></script>
+<script src="__ns__.js"></script>
+<script src="Calendar.js"></script>
+<script src="DatePicker.js"></script>
+<script src="DateRangePicker.js"></script>
+
+
+<!--script src="../bin/jscb.js"></script-->
+
+
+<style>
+table.calendar {border: solid 1px gray; border-collapse: collapse; background: white;}
+table.calendar thead {background: silver;}
+table.calendar td,
+table.calendar th {border: solid 1px gray;}
+table.calendar td.today {font-weight: bold; background: silver;}
+table.calendar td.active {font-weight: bold; background: blue; color: white;}
+table.calendar td.disabled {color: gray;}
+table.calendar th.prev,
+table.calendar th.next {cursor: pointer;}
+</style>
+</head>
+<body>
+  <form>
+    <fieldset>
+      <legend>Calendar</legend>
+      <div id="calendar-container-1" style="float:left"></div>
+      <script>controls.Calendar.draw('calendar-container-1')</script>
+      <div id="calendar-container-2" style="float:left;margin-left: 15px"></div>
+      <button type="button" onclick="cal2.dispatchEvent('prev.month')">prev</button>
+      <button type="button" onclick="cal2.dispatchEvent('next.month')">next</button>
+      <script>
+        var now = new Date;
+        var second = new Date(now.getFullYear(), now.getMonth(), 2);
+        var third = new Date(now.getFullYear(), now.getMonth(), 3);
+        var cal2 = new controls.Calendar('calendar-container-2')
+        cal2.draw([second, third]);
+      </script>
+      &nbsp; Currently calendar does not have default styles but it can be easily
+      customized:<br>
+      <pre style="float:left">
+  table.calendar {border: solid 1px; border-collapse: collapse; background: white;}
+  table.calendar thead {background: silver;}
+  table.calendar td,
+  table.calendar th {border: solid 1px;}
+  table.calendar td.today {font-weight: bold; background: silver;}
+  table.calendar td.active {font-weight: bold; background: blue; color: white;}
+  table.calendar td.disabled {color: gray;}
+  table.calendar th.prev,
+  table.calendar th.next {cursor: pointer;}
+      </pre>
+    </fieldset>
+
+    <script>
+    locale.getLocale = function() {return 'de'};
+    </script>
+    <p></p>
+    <fieldset>
+      <legend>DatePicker</legend>
+      <input onclick="controls.DatePicker.show(this)" data-format="dd MMM, YYYY" readonly>
+      <input onclick="controls.DatePicker.show(this)" data-format="MMM dd YYYY" value="May 20 2013" readonly>
+      <span  onclick="controls.DatePicker.show(this)" data-format="YYYY-MM-dd" style="border: 1px solid gray">2013-05-20</span>
+    </fieldset>
+
+    <p></p>
+    <fieldset>
+      <legend>DateRangePicker (beta)</legend>
+      <input onclick="controls.DateRangePicker.show(this)" readonly
+             data-format="MMM dd YYYY" value="May 20 2013 - May 25 2013" size="35">
+      <span  onclick="controls.DateRangePicker.show(this)" style="border: 1px solid gray"
+             data-format="YYYY-MM-dd">2013-05-20 - 2013-05-25</span>
+    </fieldset>
+  </form>
+
+</body>
+</html>

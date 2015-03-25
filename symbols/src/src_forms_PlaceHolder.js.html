@@ -27,7 +27,7 @@
 <span class='line'> 20</span>    * @param {Node} container The HTML container which contains form elements.
 <span class='line'> 21</span>    */</span><span class="WHIT">
 <span class='line'> 22</span> </span><span class="WHIT">  </span><span class="NAME">this.init</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">container</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 23</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">isSupported_</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 23</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">forms.isSupported</span><span class="PUNC">(</span><span class="NAME">forms.FEATURES.PLACEHOLDER</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'> 24</span> </span><span class="WHIT">      </span><span class="KEYW">for</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="COMM">/** @type {number} */</span><span class="WHIT"> </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">i</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">i</span><span class="WHIT"> </span><span class="PUNC">&lt;</span><span class="WHIT"> </span><span class="NAME">forms.TAGS.length</span><span class="PUNC">;</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'> 25</span> </span><span class="WHIT">        </span><span class="NAME">initPlaceHolder_</span><span class="PUNC">(</span><span class="NAME">dom.getElementsByTagName</span><span class="PUNC">(</span><span class="NAME">container</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">forms.TAGS</span><span class="PUNC">[</span><span class="NAME">i</span><span class="PUNC">++</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 26</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
@@ -78,11 +78,5 @@
 <span class='line'> 71</span>    * @private
 <span class='line'> 72</span>    */</span><span class="WHIT">
 <span class='line'> 73</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">attribute_</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'placeholder'</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 74</span> 
-<span class='line'> 75</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'> 76</span>    * @type {boolean}
-<span class='line'> 77</span>    * @private
-<span class='line'> 78</span>    */</span><span class="WHIT">
-<span class='line'> 79</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">isSupported_</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">attribute_</span><span class="WHIT"> </span><span class="KEYW">in</span><span class="WHIT"> </span><span class="NAME">dom.createElement</span><span class="PUNC">(</span><span class="STRN">'INPUT'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 80</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 81</span> </span></pre></body></html>
+<span class='line'> 74</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 75</span> </span></pre></body></html>
