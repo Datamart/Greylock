@@ -1,0 +1,1105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="generator" content="JsDoc Toolkit" />
+		
+		<title>JsDoc Reference - util.StringUtils</title>
+
+		<style type="text/css">
+			/* default.css */
+body
+{
+	font: 12px "Lucida Grande", Tahoma, Arial, Helvetica, sans-serif;
+	width: 800px;
+}
+
+.header
+{
+	clear: both;
+	background-color: #ccc;
+	padding: 8px;
+}
+
+h1
+{
+	font-size: 150%;
+	font-weight: bold;
+	padding: 0;
+	margin: 1em 0 0 .3em;
+}
+
+hr
+{
+	border: none 0;
+	border-top: 1px solid #7F8FB1;
+	height: 1px;
+}
+
+pre.code
+{
+	display: block;
+	padding: 8px;
+	border: 1px dashed #ccc;
+}
+
+#index
+{
+	margin-top: 24px;
+	float: left;
+	width: 160px;
+	position: absolute;
+	left: 8px;
+	background-color: #F3F3F3;
+	padding: 8px;
+}
+
+#content
+{
+	margin-left: 190px;
+	width: 600px;
+}
+
+.classList
+{
+	list-style-type: none;
+	padding: 0;
+	margin: 0 0 0 8px;
+	font-family: arial, sans-serif;
+	font-size: 1em;
+	overflow: auto;
+}
+
+.classList li
+{
+	padding: 0;
+	margin: 0 0 8px 0;
+}
+
+.summaryTable { width: 100%; }
+
+h1.classTitle
+{
+	font-size:170%;
+	line-height:130%;
+}
+
+h2 { font-size: 110%; }
+caption, div.sectionTitle
+{
+	background-color: #7F8FB1;
+	color: #fff;
+	font-size:130%;
+	text-align: left;
+	padding: 2px 6px 2px 6px;
+	border: 1px #7F8FB1 solid;
+}
+
+div.sectionTitle { margin-bottom: 8px; }
+.summaryTable thead { display: none; }
+
+.summaryTable td
+{
+	vertical-align: top;
+	padding: 4px;
+	border-bottom: 1px #7F8FB1 solid;
+	border-right: 1px #7F8FB1 solid;
+}
+
+/*col#summaryAttributes {}*/
+.summaryTable td.attributes
+{
+	border-left: 1px #7F8FB1 solid;
+	width: 140px;
+	text-align: right;
+}
+
+td.attributes, .fixedFont
+{
+	line-height: 15px;
+	color: #002EBE;
+	font-family: "Courier New",Courier,monospace;
+	font-size: 13px;
+}
+
+.summaryTable td.nameDescription
+{
+	text-align: left;
+	font-size: 13px;
+	line-height: 15px;
+}
+
+.summaryTable td.nameDescription, .description
+{
+	line-height: 15px;
+	padding: 4px;
+	padding-left: 4px;
+}
+
+.summaryTable { margin-bottom: 8px; }
+
+ul.inheritsList
+{
+	list-style: square;
+	margin-left: 20px;
+	padding-left: 0;
+}
+
+.detailList {
+	margin-left: 20px; 
+	line-height: 15px;
+}
+.detailList dt { margin-left: 20px; }
+
+.detailList .heading
+{
+	font-weight: bold;
+	padding-bottom: 6px;
+	margin-left: 0;
+}
+
+.light, td.attributes, .light a:link, .light a:visited
+{
+	color: #777;
+	font-style: italic;
+}
+
+.fineprint
+{
+	text-align: right;
+	font-size: 10px;
+}
+		</style>
+	</head>
+
+	<body>
+<!-- ============================== header ================================= -->	
+		<!-- begin static/header.html -->
+		<div id="header">
+</div>
+		<!-- end static/header.html -->
+
+<!-- ============================== classes index ============================ -->
+		<div id="index">
+			<!-- begin publish.classesIndex -->
+			<div align="center"><a href="../index.html">Class Index</a>
+| <a href="../files.html">File Index</a></div>
+<hr />
+<h2>Classes</h2>
+<ul class="classList">
+	
+	<li><i><a href="../symbols/_global_.html">_global_</a></i></li>
+	
+	<li><a href="../symbols/animation.html">animation</a></li>
+	
+	<li><a href="../symbols/charts.html">charts</a></li>
+	
+	<li><a href="../symbols/charts.BarChart.html">charts.BarChart</a></li>
+	
+	<li><a href="../symbols/charts.BaseChart.html">charts.BaseChart</a></li>
+	
+	<li><a href="../symbols/charts.BubbleChart.html">charts.BubbleChart</a></li>
+	
+	<li><a href="../symbols/charts.ColumnChart.html">charts.ColumnChart</a></li>
+	
+	<li><a href="../symbols/charts.DataTable.html">charts.DataTable</a></li>
+	
+	<li><a href="../symbols/charts.DonutChart.html">charts.DonutChart</a></li>
+	
+	<li><a href="../symbols/charts.FunnelChart.html">charts.FunnelChart</a></li>
+	
+	<li><a href="../symbols/charts.GeoChart.html">charts.GeoChart</a></li>
+	
+	<li><a href="../symbols/charts.GeoLocations.html">charts.GeoLocations</a></li>
+	
+	<li><a href="../symbols/charts.Grid.html">charts.Grid</a></li>
+	
+	<li><a href="../symbols/charts.HoopChart.html">charts.HoopChart</a></li>
+	
+	<li><a href="../symbols/charts.LineChart.html">charts.LineChart</a></li>
+	
+	<li><a href="../symbols/charts.PieChart.html">charts.PieChart</a></li>
+	
+	<li><a href="../symbols/charts.TagChart.html">charts.TagChart</a></li>
+	
+	<li><a href="../symbols/charts.Tooltip.html">charts.Tooltip</a></li>
+	
+	<li><a href="../symbols/controls.html">controls</a></li>
+	
+	<li><a href="../symbols/controls.Calendar.html">controls.Calendar</a></li>
+	
+	<li><a href="../symbols/controls.DatePicker.html">controls.DatePicker</a></li>
+	
+	<li><a href="../symbols/controls.DateRangePicker.html">controls.DateRangePicker</a></li>
+	
+	<li><a href="../symbols/controls.html5.html">controls.html5</a></li>
+	
+	<li><a href="../symbols/controls.html5.InputDate.html">controls.html5.InputDate</a></li>
+	
+	<li><a href="../symbols/controls.html5.InputNumber.html">controls.html5.InputNumber</a></li>
+	
+	<li><a href="../symbols/controls.html5.InputRange.html">controls.html5.InputRange</a></li>
+	
+	<li><a href="../symbols/dom.html">dom</a></li>
+	
+	<li><a href="../symbols/dom.css.html">dom.css</a></li>
+	
+	<li><a href="../symbols/dom.DataStorage.html">dom.DataStorage</a></li>
+	
+	<li><a href="../symbols/dom.EventDispatcher.html">dom.EventDispatcher</a></li>
+	
+	<li><a href="../symbols/dom.events.html">dom.events</a></li>
+	
+	<li><a href="../symbols/dom.scripts.html">dom.scripts</a></li>
+	
+	<li><a href="../symbols/dom.Template.html">dom.Template</a></li>
+	
+	<li><a href="../symbols/formatters.html">formatters</a></li>
+	
+	<li><a href="../symbols/formatters.DateFormatter.html">formatters.DateFormatter</a></li>
+	
+	<li><a href="../symbols/formatters.NumberFormatter.html">formatters.NumberFormatter</a></li>
+	
+	<li><a href="../symbols/forms.html">forms</a></li>
+	
+	<li><a href="../symbols/forms.PlaceHolder.html">forms.PlaceHolder</a></li>
+	
+	<li><a href="../symbols/forms.Validation.html">forms.Validation</a></li>
+	
+	<li><a href="../symbols/graphics.html">graphics</a></li>
+	
+	<li><a href="../symbols/graphics.VmlHelper.html">graphics.VmlHelper</a></li>
+	
+	<li><a href="../symbols/locale.html">locale</a></li>
+	
+	<li><a href="../symbols/locale.Calendar.html">locale.Calendar</a></li>
+	
+	<li><a href="../symbols/locale.Validation.html">locale.Validation</a></li>
+	
+	<li><a href="../symbols/net.html">net</a></li>
+	
+	<li><a href="../symbols/net.HttpRequest.html">net.HttpRequest</a></li>
+	
+	<li><a href="../symbols/net.HttpServletRequest.html">net.HttpServletRequest</a></li>
+	
+	<li><a href="../symbols/net.ServletRequest.html">net.ServletRequest</a></li>
+	
+	<li><a href="../symbols/net.URL.html">net.URL</a></li>
+	
+	<li><a href="../symbols/util.html">util</a></li>
+	
+	<li><a href="../symbols/util.FileUtils.html">util.FileUtils</a></li>
+	
+	<li><a href="../symbols/util.Locale.html">util.Locale</a></li>
+	
+	<li><a href="../symbols/util.MetaData.html">util.MetaData</a></li>
+	
+	<li><a href="../symbols/util.Object.html">util.Object</a></li>
+	
+	<li><a href="../symbols/util.PropertyReader.html">util.PropertyReader</a></li>
+	
+	<li><a href="../symbols/util.StringUtils.html">util.StringUtils</a></li>
+	
+	<li><a href="../symbols/util.StringUtils.Base64.html">util.StringUtils.Base64</a></li>
+	
+	<li><a href="../symbols/util.StringUtils.JSON.html">util.StringUtils.JSON</a></li>
+	
+	<li><a href="../symbols/util.StringUtils.LZW.html">util.StringUtils.LZW</a></li>
+	
+</ul>
+<hr />
+			<!-- end publish.classesIndex -->
+		</div>
+		
+		<div id="content">
+<!-- ============================== class title ============================ -->
+			<h1 class="classTitle">
+				
+				Namespace util.StringUtils
+			</h1>
+
+<!-- ============================== class summary ========================== -->			
+			<p class="description">
+				
+				
+			
+				Miscellaneous String utility methods.
+				
+				
+					<br /><i>Defined in: </i> <a href="../symbols/src/src_glize_src_util_StringUtils.js.html">StringUtils.js</a>.
+				
+			</p>
+
+<!-- ============================== constructor summary ==================== -->			
+			
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class util.StringUtils.">
+				<caption>Namespace Summary</caption>
+				<thead>
+					<tr>
+						<th scope="col">Constructor Attributes</th>
+						<th scope="col">Constructor Name and Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="attributes">&nbsp;</td>
+						<td class="nameDescription" >
+							<div class="fixedFont">
+								<b><a href="../symbols/util.StringUtils.html#constructor">util.StringUtils</a></b>
+							</div>
+							<div class="description"></div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+
+<!-- ============================== properties summary ===================== -->
+			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class util.StringUtils.">
+					<caption>Field Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Field Attributes</th>
+							<th scope="col">Field Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								util.StringUtils.<b><a href="../symbols/util.StringUtils.html#.BASE64_CHARACTER_TABLE">BASE64_CHARACTER_TABLE</a></b>
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								util.StringUtils.<b><a href="../symbols/util.StringUtils.html#.trimLeadingWhitespace">trimLeadingWhitespace</a></b>
+								</div>
+								<div class="description">Trims leading whitespace from the given String.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								util.StringUtils.<b><a href="../symbols/util.StringUtils.html#.trimTrailingWhitespace">trimTrailingWhitespace</a></b>
+								</div>
+								<div class="description">Trims trailing whitespace from the given String.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								util.StringUtils.<b><a href="../symbols/util.StringUtils.html#.trimWhitespace">trimWhitespace</a></b>
+								</div>
+								<div class="description">Trims leading and trailing whitespace from the given String.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								util.StringUtils.<b><a href="../symbols/util.StringUtils.html#.URI">URI</a></b>
+								</div>
+								<div class="description">Methods to manipulate with URI strings.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								util.StringUtils.<b><a href="../symbols/util.StringUtils.html#.UTF8">UTF8</a></b>
+								</div>
+								<div class="description">Methods to manipulate with UTF-8 strings.</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+			
+
+<!-- ============================== methods summary ======================== -->
+			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class util.StringUtils.">
+					<caption>Method Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Method Attributes</th>
+							<th scope="col">Method Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">util.StringUtils.<b><a href="../symbols/util.StringUtils.html#.hash">hash</a></b>(str)
+								</div>
+								<div class="description">Converts <code>str</code> to hashed string.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">util.StringUtils.<b><a href="../symbols/util.StringUtils.html#.toByteArray">toByteArray</a></b>(str)
+								</div>
+								<div class="description">Converts string to a byte array.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">util.StringUtils.<b><a href="../symbols/util.StringUtils.html#.toPlainText">toPlainText</a></b>(str)
+								</div>
+								<div class="description">Converts HTML to plain text.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">util.StringUtils.<b><a href="../symbols/util.StringUtils.html#.toQueryString">toQueryString</a></b>(obj, opt_prefix)
+								</div>
+								<div class="description">Converts <code>obj</code> to query string.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">util.StringUtils.<b><a href="../symbols/util.StringUtils.html#.trim">trim</a></b>(str)
+								</div>
+								<div class="description">Trims leading and trailing whitespace from the given String.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">util.StringUtils.<b><a href="../symbols/util.StringUtils.html#.trimLeft">trimLeft</a></b>(str)
+								</div>
+								<div class="description">Trims leading whitespace from the given String.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">util.StringUtils.<b><a href="../symbols/util.StringUtils.html#.trimRight">trimRight</a></b>(str)
+								</div>
+								<div class="description">Trims trailing whitespace from the given String.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">util.StringUtils.<b><a href="../symbols/util.StringUtils.html#.uuid">uuid</a></b>()
+								</div>
+								<div class="description">Generates a random UUID (v4).</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+			
+<!-- ============================== events summary ======================== -->
+			
+
+<!-- ============================== constructor details ==================== -->		
+			
+			<div class="details"><a name="constructor"> </a>
+				<div class="sectionTitle">
+					Namespace Detail
+				</div>
+				
+				<div class="fixedFont">
+						<b>util.StringUtils</b>
+				</div>
+				
+				<div class="description">
+					
+					
+				</div>
+				
+				
+				
+				
+					
+					
+					
+					
+					
+					
+					
+						<dl class="detailList">
+						<dt class="heading">See:</dt>
+						
+							<dd>http://static.springsource.org/spring/docs/2.5.x/api/org/
+    springframework/util/StringUtils.html</dd>
+						
+						</dl>
+					
+
+			</div>
+			
+
+<!-- ============================== field details ========================== -->		
+			
+				<div class="sectionTitle">
+					Field Detail
+				</div>
+				
+					<a name=".BASE64_CHARACTER_TABLE"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">util.StringUtils.</span><b>BASE64_CHARACTER_TABLE</b>
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".trimLeadingWhitespace"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{string}</span>
+					<span class="light">util.StringUtils.</span><b>trimLeadingWhitespace</b>
+					
+					</div>
+					<div class="description">
+						Trims leading whitespace from the given String.
+						
+						
+					</div>
+					
+					
+
+						
+							<dl class="detailList">
+							<dt class="heading">Deprecated:</dt>
+							<dt>
+								Use "util.StringUtils.trimLeft" instead.
+							</dt>
+							</dl>
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".trimTrailingWhitespace"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{string}</span>
+					<span class="light">util.StringUtils.</span><b>trimTrailingWhitespace</b>
+					
+					</div>
+					<div class="description">
+						Trims trailing whitespace from the given String.
+						
+						
+					</div>
+					
+					
+
+						
+							<dl class="detailList">
+							<dt class="heading">Deprecated:</dt>
+							<dt>
+								Use "util.StringUtils.trimRight" instead.
+							</dt>
+							</dl>
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".trimWhitespace"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{string}</span>
+					<span class="light">util.StringUtils.</span><b>trimWhitespace</b>
+					
+					</div>
+					<div class="description">
+						Trims leading and trailing whitespace from the given String.
+						
+						
+					</div>
+					
+					
+
+						
+							<dl class="detailList">
+							<dt class="heading">Deprecated:</dt>
+							<dt>
+								Use "util.StringUtils.trim" instead.
+							</dt>
+							</dl>
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".URI"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">util.StringUtils.</span><b>URI</b>
+					
+					</div>
+					<div class="description">
+						Methods to manipulate with URI strings.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".UTF8"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">util.StringUtils.</span><b>UTF8</b>
+					
+					</div>
+					<div class="description">
+						Methods to manipulate with UTF-8 strings.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					
+				
+			
+
+<!-- ============================== method details ========================= -->		
+			
+				<div class="sectionTitle">
+					Method Detail
+				</div>
+				
+					<a name=".hash"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{string}</span>
+					<span class="light">util.StringUtils.</span><b>hash</b>(str)
+					
+					</div>
+					<div class="description">
+						Converts <code>str</code> to hashed string.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{string}</span> <b>str</b>
+									
+								</dt>
+								<dd>The input string.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{string}</span> Returns hashed string.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".toByteArray"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{!Array.<number>}</span>
+					<span class="light">util.StringUtils.</span><b>toByteArray</b>(str)
+					
+					</div>
+					<div class="description">
+						Converts string to a byte array.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{string}</span> <b>str</b>
+									
+								</dt>
+								<dd>The input string.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{!Array.<number>}</span> Returns byte array.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".toPlainText"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{string}</span>
+					<span class="light">util.StringUtils.</span><b>toPlainText</b>(str)
+					
+					</div>
+					<div class="description">
+						Converts HTML to plain text.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{string}</span> <b>str</b>
+									
+								</dt>
+								<dd>The input string.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{string}</span> Converted string.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".toQueryString"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{string}</span>
+					<span class="light">util.StringUtils.</span><b>toQueryString</b>(obj, opt_prefix)
+					
+					</div>
+					<div class="description">
+						Converts <code>obj</code> to query string.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{Object}</span> <b>obj</b>
+									
+								</dt>
+								<dd>The key-value pairs object.</dd>
+							
+								<dt>
+									<span class="light fixedFont">{string=}</span> <b>opt_prefix</b>
+									
+								</dt>
+								<dd>Optional query prefix.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{string}</span> Returns query string or empty string if no parameters
+    given.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".trim"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{string}</span>
+					<span class="light">util.StringUtils.</span><b>trim</b>(str)
+					
+					</div>
+					<div class="description">
+						Trims leading and trailing whitespace from the given String.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{string}</span> <b>str</b>
+									
+								</dt>
+								<dd>The String to check.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{string}</span> Returns the trimmed String.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".trimLeft"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{string}</span>
+					<span class="light">util.StringUtils.</span><b>trimLeft</b>(str)
+					
+					</div>
+					<div class="description">
+						Trims leading whitespace from the given String.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{string}</span> <b>str</b>
+									
+								</dt>
+								<dd>The String to check.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{string}</span> Returns the trimmed String.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".trimRight"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{string}</span>
+					<span class="light">util.StringUtils.</span><b>trimRight</b>(str)
+					
+					</div>
+					<div class="description">
+						Trims trailing whitespace from the given String.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{string}</span> <b>str</b>
+									
+								</dt>
+								<dd>The String to check.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{string}</span> Returns the trimmed String.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".uuid"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{string}</span>
+					<span class="light">util.StringUtils.</span><b>uuid</b>()
+					
+					</div>
+					<div class="description">
+						Generates a random UUID (v4).
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{string}</span> Returns generated random UUID.</dd>
+							
+							</dl>
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">See:</dt>
+							
+								<dd>http://en.wikipedia.org/wiki/Universally_unique_identifier</dd>
+							
+								<dd>http://en.wikipedia.org/wiki/Globally_unique_identifier</dd>
+							
+								<dd>http://www.ietf.org/rfc/rfc4122.txt</dd>
+							
+							</dl>
+						
+
+					
+				
+			
+			
+<!-- ============================== event details ========================= -->		
+			
+			
+			<hr />
+		</div>
+
+		
+<!-- ============================== footer ================================= -->
+		<div class="fineprint" style="clear:both">
+			
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Jun 03 2015 12:48:44 GMT+0300 (EEST)
+		</div>
+	</body>
+</html>
