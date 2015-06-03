@@ -41,11 +41,11 @@ function submodule() {
 function main() {
   submodule
 
-  # println "[WEB] Running linter:"
-  # chmod +x jslint.sh && ./jslint.sh
+  println "[WEB] Running linter:"
+  chmod +x jslint.sh && ./jslint.sh
 
-  # println "[WEB] Running compiler:"
-  # chmod +x jsmin.sh && ./jsmin.sh
+  println "[WEB] Running compiler:"
+  chmod +x jsmin.sh && ./jsmin.sh
 
   println "[WEB] Done"
 }
