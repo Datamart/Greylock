@@ -2,6 +2,9 @@
 #
 # http://google-styleguide.googlecode.com/svn/trunk/shell.xml
 
+readonly CWD=$(cd $(dirname $0); pwd)
+readonly GLIZE_PATH="${CWD}/../src/glize"
+
 #
 # Prints message.
 # Arguments:
@@ -15,10 +18,12 @@ function println() {
 # The main function.
 #
 function main() {
-  println "[SYNC] Resources:"
-  cd ../resources
-  git pull
-  cp -R ../resources/src/ ../src/
+  println "[SYNC] ${GLIZE_PATH}:"
+  mkdir -p ${GLIZE_PATH}
+  cd ${GLIZE_PATH}
+  #git pull
+  git submodule update --init --recursive
+  cd ${CWD}
 
   println "[WEB] Running linter:"
   chmod +x jslint.sh && ./jslint.sh
