@@ -77,6 +77,7 @@ charts.HoopChart = function(container) {
    * @return {string} Returns circle area content.
    * @protected
    * @override
+   * @expose
    */
   this.getAreaContent = function() {
     /** @type {string} */

@@ -93,6 +93,7 @@ charts.DonutChart = function(container) {
    * Gets circle area content.
    * @return {string} Returns circle area content.
    * @protected
+   * @expose
    */
   this.getAreaContent = function() {
     /** @type {string} */
