@@ -48,6 +48,11 @@ function main() {
   chmod +x jsmin.sh && ./jsmin.sh
 
   println "[WEB] Done"
+
+  println "[DOC] Running jsdoc:"
+  chmod +x jsdoc.sh && ./jsdoc.sh
+
+  println "[DOC] Done"
 }
 
 main "$@"
