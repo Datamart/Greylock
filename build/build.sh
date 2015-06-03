@@ -15,6 +15,11 @@ function println() {
 # The main function.
 #
 function main() {
+  println "[SYNC] Resources:"
+  cd ../resources
+  git pull
+  cp -R ../resources/src/ ../src/
+
   println "[WEB] Running linter:"
   chmod +x jslint.sh && ./jslint.sh
 
