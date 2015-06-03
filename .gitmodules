@@ -1,3 +1,3 @@
 [submodule "glize"]
-	path = glize
-	url = git@github.com:Datamart/Glize.git
+  path = glize
+  url = git@github.com:Datamart/Glize.git
