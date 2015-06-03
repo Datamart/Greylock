@@ -82,7 +82,7 @@ function minify::css() {
 #
 function main() {
     minify::download
-    minify::js "../src" "../min/komito.js"
+    minify::js "../src" "../min/greylock.js"
 }
 
 main "$@"

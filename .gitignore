@@ -4,3 +4,4 @@
 *.so
 .DS_Store
 build/lib
+src/glize

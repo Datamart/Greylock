@@ -4,8 +4,9 @@
 
 readonly CWD=$(cd $(dirname $0); pwd)
 readonly GLIZE_REPO="git@github.com:Datamart/Glize.git"
-readonly GLIZE_PATH="${CWD}/../glize"
-readonly GLIZE_COPY="${CWD}/../src/glize"
+readonly GLIZE_NAME="glize"
+readonly GLIZE_PATH="${CWD}/../${GLIZE_NAME}"
+readonly GLIZE_COPY="${CWD}/../src/${GLIZE_NAME}"
 
 #
 # Prints message.
@@ -21,12 +22,11 @@ function println() {
 #
 function submodule() {
   println "[SYNC] ${GLIZE_PATH}:"
-  if [ -d "$GLIZE_PATH" ]; then
-    git rm -r --force --cached ${GLIZE_PATH}
-  fi
-
   cd "${CWD}/../"
-  git submodule add --force ${GLIZE_REPO} "glize"
+  # if [ -d "$GLIZE_PATH" ]; then
+  #   git rm -r --force --cached ${GLIZE_PATH}
+  # fi
+  git submodule add --force "${GLIZE_REPO}" "${GLIZE_NAME}"
   git submodule update --init --recursive
 
   rm -rf "${GLIZE_COPY}"
