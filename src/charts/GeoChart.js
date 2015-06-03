@@ -30,7 +30,7 @@
  *   <div id="chart-container"
  *        style="width: 560px; height: 365px;"></div>
  * </div>
- * <script src="../../bin/jscb.js"></script>
+ * <script src="../../min/greylock.js"></script>
  * <script>
  *   var chart = new charts.GeoChart('chart-container');
  *   chart.draw([['Country', 'Population'],

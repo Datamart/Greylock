@@ -23,7 +23,7 @@
  *   <div id="chart-container"
  *        style="width: 560px; height: 300px;"></div>
  * </div>
- * <script src="../../bin/jscb.js"></script>
+ * <script src="../../min/greylock.js"></script>
  * <script>
  *   var chart = new charts.PieChart('chart-container');
  *   chart.draw([['Work', 'Eat', 'Commute', 'Watch TV', 'Sleep'],

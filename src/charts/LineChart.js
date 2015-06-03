@@ -23,7 +23,7 @@
  *
  * <div id="chart-container"
  *      style="width: 560px; height: 200px; margin: 0 0 20px 20px;"></div>
- * <script src="../../bin/jscb.js"></script>
+ * <script src="../../min/greylock.js"></script>
  * <script>
  *   var chart = new charts.LineChart('chart-container');
  *   chart.draw([['Year', 'Sales', 'Expenses', 'Profit'],
