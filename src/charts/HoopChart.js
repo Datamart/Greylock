@@ -22,7 +22,7 @@
  *   <div id="chart-container"
  *        style="width: 560px; height: 300px;"></div>
  * </div>
- * <script src="../../min/greylock.js"></script>
+ * <script src="http://datamart.github.io/Greylock/greylock.js"></script>
  * <script>
  *   var chart = new charts.HoopChart('chart-container');
  *   chart.draw([['Work', 'Eat', 'Commute', 'Watch TV', 'Sleep'],
@@ -77,7 +77,6 @@ charts.HoopChart = function(container) {
    * @return {string} Returns circle area content.
    * @protected
    * @override
-   * @expose
    */
   this.getAreaContent = function() {
     /** @type {string} */
@@ -86,6 +85,9 @@ charts.HoopChart = function(container) {
                   'HoopChart' + '</b></div>';
     return content;
   };
+
+  // Export for closure compiler.
+  this['getAreaContent'] = this.getAreaContent;
 
   /**
    * Gets chart's options merged with defaults chart's options.

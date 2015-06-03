@@ -26,7 +26,7 @@
  *   <div id="chart-container"
  *        style="width: 560px; height: 200px;"></div>
  * </div>
- * <script src="../../min/greylock.js"></script>
+ * <script src="http://datamart.github.io/Greylock/greylock.js"></script>
  * <script>
  *   var chart = new charts.BarChart('chart-container');
  *   chart.draw([['Year', 'Sales', 'Expenses', 'Profit'],

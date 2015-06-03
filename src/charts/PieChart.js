@@ -23,7 +23,7 @@
  *   <div id="chart-container"
  *        style="width: 560px; height: 300px;"></div>
  * </div>
- * <script src="../../min/greylock.js"></script>
+ * <script src="http://datamart.github.io/Greylock/greylock.js"></script>
  * <script>
  *   var chart = new charts.PieChart('chart-container');
  *   chart.draw([['Work', 'Eat', 'Commute', 'Watch TV', 'Sleep'],
@@ -51,7 +51,7 @@ charts.PieChart = function(container) {
     options_ = getOptions_(opt_options);
     formatter_ = new formatters.NumberFormatter(
         /** @type {Object.<string,*>} */(options_['formatter']));
-    self_.tooltip.setOptions(options_);
+    tooltip_.setOptions(options_);
 
     /** @type {!Array.<number>} */ var rows = [];
     for (/** @type {number} */ var i = 1; i < data.length; i++) {
@@ -136,20 +136,20 @@ charts.PieChart = function(container) {
     /** @type {!Object.<string, function(Event,...)>} */ var events = {};
 
     events[dom.events.TYPE.MOUSEMOVE] = function(e) {
-      self_.tooltip.show(e);
+      tooltip_.show(e);
     };
 
     events[dom.events.TYPE.MOUSEOVER] = function(e) {
       // Note: node.firstChild is <vml:fill> element.
       (charts.IS_SVG_SUPPORTED ? node.style : node.firstChild)[attr] = 1;
-      self_.tooltip.show(e);
+      tooltip_.show(e);
     };
 
     events[dom.events.TYPE.MOUSEOUT] = function(e) {
       // Note: node.firstChild is <vml:fill> element.
       (charts.IS_SVG_SUPPORTED ? node.style : node.firstChild)[attr] =
           options_['opacity'];
-      self_.tooltip.hide(e);
+      tooltip_.hide(e);
     };
 
     for (/** @type {string} */ var key in events) {
@@ -415,6 +415,14 @@ charts.PieChart = function(container) {
    * @private
    */
   var formatter_ = null;
+
+  /**
+   * Instance of <code>charts.Tooltip</code>.
+   * @type {!charts.Tooltip}
+   * @see charts.Tooltip
+   * @private
+   */
+  var tooltip_ = self_.tooltip;
 };
 
 // Export for closure compiler.

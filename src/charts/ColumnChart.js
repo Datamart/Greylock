@@ -20,7 +20,7 @@
  *
  * <div id="chart-container"
  *      style="width: 560px; height: 200px; margin: 0 0 20px 20px;"></div>
- * <script src="../../min/greylock.js"></script>
+ * <script src="http://datamart.github.io/Greylock/greylock.js"></script>
  * <script>
  *   var chart = new charts.ColumnChart('chart-container');
  *   chart.draw([['Year', 'Sales', 'Expenses', 'Profit'],

@@ -23,7 +23,7 @@
  *   <div id="chart-container"
  *        style="width: 560px; height: 300px;"></div>
  * </div>
- * <script src="../../min/greylock.js"></script>
+ * <script src="http://datamart.github.io/Greylock/greylock.js"></script>
  * <script>
  *   var chart = new charts.DonutChart('chart-container');
  *   chart.draw([['Work', 'Eat', 'Commute', 'Watch TV', 'Sleep'],
@@ -93,7 +93,6 @@ charts.DonutChart = function(container) {
    * Gets circle area content.
    * @return {string} Returns circle area content.
    * @protected
-   * @expose
    */
   this.getAreaContent = function() {
     /** @type {string} */
@@ -102,6 +101,9 @@ charts.DonutChart = function(container) {
                   '<div style="color:#B3B0B0;font-size:11px">TOTAL</div>';
     return content;
   };
+
+  // Export for closure compiler.
+  this['getAreaContent'] = this.getAreaContent;
 
   /**
    * @param {number} x The X coord.

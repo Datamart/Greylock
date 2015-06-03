@@ -23,7 +23,7 @@
  *
  * <div id="chart-container"
  *      style="width: 560px; height: 200px; margin: 0 0 20px 20px;"></div>
- * <script src="../../min/greylock.js"></script>
+ * <script src="http://datamart.github.io/Greylock/greylock.js"></script>
  * <script>
  *   var chart = new charts.LineChart('chart-container');
  *   chart.draw([['Year', 'Sales', 'Expenses', 'Profit'],
@@ -49,8 +49,8 @@ charts.LineChart = function(container) {
    */
   this.draw = function(data, opt_options) {
     data_ = prepareData_(data);
-    /** @type {!charts.Grid} */ var grid = new charts.Grid(self_.container);
-    options_ = grid.getOptions(getOptions_(opt_options));
+    grid_ = new charts.Grid(self_.container);
+    options_ = grid_.getOptions(getOptions_(opt_options));
     formatter_ = new formatters.NumberFormatter(
         /** @type {Object.<string,*>} */(options_['formatter']));
     self_.tooltip.setOptions(options_);
@@ -95,7 +95,7 @@ charts.LineChart = function(container) {
     options_['data'] = {'min': minValue, 'max': maxValue, 'columns': columns};
     //options_['padding'] = radius * 2;
     options_['direction'] = charts.Grid.DIRECTION.BOTTOM_TO_TOP;
-    grid.draw(options_);
+    grid_.draw(options_);
 
     self_.drawContent(content, width, height);
     initEvents_();
@@ -488,7 +488,13 @@ charts.LineChart = function(container) {
    * @type {formatters.NumberFormatter}
    * @private
    */
-  var formatter_ = null;
+  var formatter_;
+
+  /**
+   * @type {charts.Grid}
+   * @private
+   */
+  var grid_;
 };
 
 // Export for closure compiler.
