@@ -4,7 +4,3 @@
 *.so
 .DS_Store
 build/lib
-/*
-!/src
-/src/*
-!/src/charts
