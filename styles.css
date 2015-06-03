@@ -1,0 +1,13 @@
+/** overriding dtm default styles */
+
+body {
+  background-attachment: fixed;
+  background-color: white;
+  background-image: url(/Glize/images/glize-bg.jpg);
+  background-size: cover;
+  opacity: .8;
+}
+.dtm-header{opacity:.8;}
+.kc-features{display:block;margin:-1em 0 2em 2.7em;text-decoration:none;}
+.kc-features i{font-style:normal;text-decoration:underline;}
+.dtm-footer p{max-width:none;}
