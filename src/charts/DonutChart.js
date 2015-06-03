@@ -93,10 +93,8 @@ charts.DonutChart = function(container) {
    * Gets circle area content.
    * @return {string} Returns circle area content.
    * @protected
-   * @expose
    */
   this.getAreaContent = function() {
-    // The @expose annotation fixes closure compiler multi-inheritance bug.
     /** @type {string} */
     var content = '<div style="color:#666;font-size:22px;margin-bottom:3px;">' +
                   formatter_.round(getTotal_()) + '</div>' +

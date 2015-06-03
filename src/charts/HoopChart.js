@@ -77,10 +77,8 @@ charts.HoopChart = function(container) {
    * @return {string} Returns circle area content.
    * @protected
    * @override
-   * @expose
    */
   this.getAreaContent = function() {
-    // The @expose annotation fixes closure compiler multi-inheritance bug.
     /** @type {string} */
     var content = '<div style="color:#aaa;font-size:15px">Example of</div>' +
                   '<div style="color:#666;font-size:18px"><b>' +

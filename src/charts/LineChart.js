@@ -195,7 +195,7 @@ charts.LineChart = function(container) {
     opt_options['smooth'] = opt_options['smooth'] || false;
     opt_options['formatter'] = opt_options['formatter'] || {};
     opt_options['anim'] = (opt_options['anim'] || opt_options['smooth']) &&
-        !window.VBArray;
+        !window['VBArray'];
     opt_options['duration'] = opt_options['duration'] || 0.7;
     return self_.getOptions(opt_options);
   }
