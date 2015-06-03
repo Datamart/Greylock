@@ -1,7 +1,8 @@
 /** overriding dtm default styles */
 
 .dtm-header, dtm-footer{opacity:.9;}
-.dtm-header h1 {font-size: 1em; font-weight: 600;   margin-top: -0.1em;}
+.dtm-header h1 {font-size:1em;font-weight:600;margin-top:-0.1em;}
+.dtm-product h1 {margin-bottom: 0;}
 .kc-features{display:block;margin:-1em 0 2em 2.7em;text-decoration:none;}
 .kc-features i{font-style:normal;text-decoration:underline;}
 .dtm-footer p{max-width:none;}
