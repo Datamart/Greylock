@@ -56,6 +56,9 @@ function minify::js() {
                   --charset UTF-8 \
                   --use_types_for_optimization \
                   --js_output_file "${OUT_PATH}"
+
+        echo "(function(){" | cat - ${OUT_PATH} > /tmp/out && mv /tmp/out ${OUT_PATH}
+        echo '})();' >> ${OUT_PATH}
     fi
 }
 

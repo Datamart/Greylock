@@ -49,8 +49,8 @@ charts.LineChart = function(container) {
    */
   this.draw = function(data, opt_options) {
     data_ = prepareData_(data);
-    grid_ = new charts.Grid(self_.container);
-    options_ = grid_.getOptions(getOptions_(opt_options));
+    /** @type {!charts.Grid} */ var grid = new charts.Grid(self_.container);
+    options_ = grid.getOptions(getOptions_(opt_options));
     formatter_ = new formatters.NumberFormatter(
         /** @type {Object.<string,*>} */(options_['formatter']));
     self_.tooltip.setOptions(options_);
@@ -95,7 +95,7 @@ charts.LineChart = function(container) {
     options_['data'] = {'min': minValue, 'max': maxValue, 'columns': columns};
     //options_['padding'] = radius * 2;
     options_['direction'] = charts.Grid.DIRECTION.BOTTOM_TO_TOP;
-    grid_.draw(options_);
+    grid.draw(options_);
 
     self_.drawContent(content, width, height);
     initEvents_();
@@ -488,13 +488,7 @@ charts.LineChart = function(container) {
    * @type {formatters.NumberFormatter}
    * @private
    */
-  var formatter_;
-
-  /**
-   * @type {charts.Grid}
-   * @private
-   */
-  var grid_;
+  var formatter_ = null;
 };
 
 // Export for closure compiler.
