@@ -8,5 +8,6 @@ script:
 before_install:
   # - git submodule update --init --recursive
   - pwd
-  - ln -s glize/src src/glize
-  - ls -la src/glize
+  - ln -s /home/travis/build/Datamart/Greylock/glize/src /home/travis/build/Datamart/Greylock/src/glize
+  - ls -la /home/travis/build/Datamart/Greylock/glize/src
+  - ls -la /home/travis/build/Datamart/Greylock/src/glize
