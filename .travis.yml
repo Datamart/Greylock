@@ -5,5 +5,3 @@ sudo: required
 script:
   - ./build/jslint.sh
   - ./build/jsmin.sh
-before_install:
-  - git submodule update --init --recursive
