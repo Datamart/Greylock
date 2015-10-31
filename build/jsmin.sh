@@ -1,91 +1,80 @@
-#!/usr/bin/env bash
+#!/bin/bash
+#
+# Guide: https://google.github.io/styleguide/shell.xml
+# Link: https://developers.google.com/closure/compiler/
 
-# https://developers.google.com/closure/compiler/
+readonly CWD=$(cd $(dirname $0); pwd)
+readonly LIB="${CWD}/lib"
+readonly TMP="${CWD}/tmp"
 
-CWD=$(cd $(dirname $0); pwd)
-TMP="${CWD}/tmp"
-LIB="${CWD}/lib"
+readonly JS_COMPILER_ZIP="compiler-latest.zip"
+readonly JS_COMPILER_URL="http://dl.google.com/closure-compiler/${JS_COMPILER_ZIP}"
+readonly JS_COMPILER_JAR="${LIB}/compiler.jar"
 
-JS_COMPILER_JAR="${LIB}/compiler.jar"
-CSS_COMPILER_JAR="${LIB}/closure-stylesheets.jar"
+readonly JS_COMPILED="${CWD}/../min/greylock.js"
+readonly JS_SOURCES="${CWD}/../src"
 
-JS_DOWNLOAD_URL=http://dl.google.com/closure-compiler/compiler-latest.zip
-CSS_DOWNLOAD_URL=http://closure-stylesheets.googlecode.com/files/closure-stylesheets-20111230.jar
+readonly WGET="`which wget`"
+readonly CURL="`which curl`"
+readonly PYTHON="`which python`"
+readonly JAVA="`which java`"
 
-WGET="`which wget`"
-CURL="`which curl`"
+readonly LICENSE="/* @license http://www.apache.org/licenses/LICENSE-2.0 */"
 
-function minify::download() {
-    mkdir -p ${LIB}
+# http://www.gnu.org/software/bash/manual/html_node/ANSI_002dC-Quoting.html
+readonly NEW_LINE=$'\n'
 
-    if [ ! -f "${JS_COMPILER_JAR}" ]; then
-        rm -rf ${TMP} && mkdir ${TMP} && cd ${TMP}
-        if [ -n "$WGET" ]; then
-            $WGET --no-verbose "${JS_DOWNLOAD_URL}"
-        else
-            $CURL "${JS_DOWNLOAD_URL}" > ./compiler-latest.zip
-        fi
-        unzip compiler-latest.zip -d "${LIB}"
-        cd ${CWD} && rm -rf ${TMP}
+
+#
+# Downloads closure compiler
+#
+function download() {
+  if [ ! -f "${JS_COMPILER_JAR}" ]; then
+    echo "Downloading closure compiler:"
+    mkdir -p "${LIB}"
+    rm -rf "${TMP}" && mkdir "${TMP}" && cd "${TMP}"
+    if [ -n "$WGET" ]; then
+      $WGET "${JS_COMPILER_URL}" -O "${TMP}/${JS_COMPILER_ZIP}"
+    else
+      $CURL "${JS_COMPILER_URL}" > "${TMP}/${JS_COMPILER_ZIP}"
     fi
 
-    if [ ! -f "${CSS_COMPILER_JAR}" ]; then
-        if [ -n "$WGET" ]; then
-            $WGET --no-verbose "${CSS_DOWNLOAD_URL}"
-        else
-            $CURL "${CSS_DOWNLOAD_URL}" > ./closure-stylesheets-20111230.jar
-        fi
-        mv closure-stylesheets-20111230.jar "${CSS_COMPILER_JAR}"
-        rm -rf closure-stylesheets-20111230.jar
-    fi
+    echo -n "Extracting closure compiler: "
+    unzip -q "${TMP}/${JS_COMPILER_ZIP}" -d "${LIB}"
+    echo "Done"
+
+    cd "${CWD}" && rm -rf "${TMP}"
+  fi
 }
 
-function minify::js() {
-    local SRC_PATH
-    local OUT_PATH
-    SRC_PATH=$1
-    OUT_PATH=$2
+#
+# Runs closure compiler.
+#
+function run() {
+  rm -rf "${JS_COMPILED}" && touch "${JS_COMPILED}" && chmod 0666 "${JS_COMPILED}"
 
-    if [ -d "${SRC_PATH}" ]; then
-        rm -rf "${OUT_PATH}" && touch "${OUT_PATH}" && chmod 0666 "${OUT_PATH}"
+  echo "Running closure compiler:"
+  $PYTHON -c "import sys;sys.argv.pop(0);print(' --js ' + ' --js '.join(sorted(sys.argv, cmp=lambda x,y: cmp(x.lower(), y.lower()))))" `find "${JS_SOURCES}" -name "*.js" -print` |
+      xargs $JAVA -jar "${JS_COMPILER_JAR}" \
+        --compilation_level ADVANCED_OPTIMIZATIONS \
+        --warning_level VERBOSE \
+        --charset UTF-8 \
+        --use_types_for_optimization \
+        --externs "${CWD}/externs.js" \
+        --js_output_file "${JS_COMPILED}"
 
-        python -c "import sys;sys.argv.pop(0);print(' --js ' + ' --js '.join(sorted(sys.argv, cmp=lambda x,y: cmp(x.lower(), y.lower()))))" `find "${SRC_PATH}" -name "*.js" -print` |
-            xargs java -jar "${JS_COMPILER_JAR}" \
-                  --compilation_level ADVANCED_OPTIMIZATIONS \
-                  --warning_level VERBOSE \
-                  --charset UTF-8 \
-                  --use_types_for_optimization \
-                  --js_output_file "${OUT_PATH}"
+  echo "${LICENSE}${NEW_LINE}(function(){" | cat - $JS_COMPILED > /tmp/out && mv /tmp/out $JS_COMPILED
+  echo '})();' >> $JS_COMPILED
 
-        echo "(function(){" | cat - ${OUT_PATH} > /tmp/out && mv /tmp/out ${OUT_PATH}
-        echo '})();' >> ${OUT_PATH}
-    fi
-}
-
-function minify::css() {
-    local SRC_PATH
-    local OUT_PATH
-    SRC_PATH=$1
-    OUT_PATH=$2
-
-    if [ -d "${SRC_PATH}" ]; then
-        rm -rf "${OUT_PATH}" && touch "${OUT_PATH}" && chmod 0666 "${OUT_PATH}"
-
-        find "${SRC_PATH}" -name "*.css" -print |
-         sed 's/.*/ &/' | sort -n |
-           xargs java -jar "${CSS_COMPILER_JAR}" \
-              --allow-unrecognized-properties \
-              --allow-unrecognized-functions \
-              --output-file "${OUT_PATH}"
-    fi
+  echo "Done"
 }
 
 #
 # The main function.
 #
 function main() {
-    minify::download
-    minify::js "../src" "../min/greylock.js"
+  download
+  run
 }
 
 main "$@"

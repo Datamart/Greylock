@@ -23,11 +23,14 @@ function println() {
 function submodule() {
   println "[SYNC] ${GLIZE_PATH}:"
   cd "${CWD}/../"
-  # if [ -d "$GLIZE_PATH" ]; then
-  #   git rm -r --force --cached ${GLIZE_PATH}
-  # fi
+  #if [ -d "$GLIZE_PATH" ]; then
+    # git rm -r --force --cached ${GLIZE_PATH}
+  #fi
   git submodule add --force "${GLIZE_REPO}" "${GLIZE_NAME}"
-  git submodule update --init --recursive
+  git submodule update --init --recursive --force
+  git submodule sync --recursive
+  cd "${GLIZE_PATH}"
+  git pull origin master
 
   rm -rf "${GLIZE_COPY}"
   mkdir  "${GLIZE_COPY}"
