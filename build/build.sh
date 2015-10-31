@@ -32,9 +32,9 @@ function submodule() {
   cd "${GLIZE_PATH}"
   git pull origin master
 
-  rm -rf "${GLIZE_COPY}"
-  mkdir  "${GLIZE_COPY}"
-  cp -r "${GLIZE_PATH}/src" "${GLIZE_COPY}"
+  # rm -rf "${GLIZE_COPY}"
+  # mkdir  "${GLIZE_COPY}"
+  # cp -r "${GLIZE_PATH}/src" "${GLIZE_COPY}"
   cd "${CWD}"
 }
 
