@@ -7,3 +7,4 @@ script:
   - ./build/jsmin.sh
 before_install:
   - git submodule update --init --recursive
+  - ln -s ./glize/src ./src/glize
