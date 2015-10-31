@@ -8,4 +8,4 @@ script:
 before_install:
   - git submodule update --init --recursive
   - mkdir /home/travis/build/Datamart/Greylock/src/glize
-  - cp /home/travis/build/Datamart/Greylock/glize/src /home/travis/build/Datamart/Greylock/src/glize
+  - cp -rf /home/travis/build/Datamart/Greylock/glize/src /home/travis/build/Datamart/Greylock/src/glize
