@@ -6,8 +6,6 @@ script:
   - ./build/jslint.sh
   - ./build/jsmin.sh
 before_install:
-  # - git submodule update --init --recursive
-  - pwd
-  - ln -s /home/travis/build/Datamart/Greylock/glize/src /home/travis/build/Datamart/Greylock/src/glize
-  - ls -la /home/travis/build/Datamart/Greylock/glize/src
-  - ls -la /home/travis/build/Datamart/Greylock/src/glize
+  - git submodule update --init --recursive
+  - mkdir /home/travis/build/Datamart/Greylock/src/glize
+  - cp /home/travis/build/Datamart/Greylock/glize/src /home/travis/build/Datamart/Greylock/src/glize
