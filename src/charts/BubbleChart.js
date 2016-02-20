@@ -61,7 +61,7 @@ charts.BubbleChart = function(container) {
     /** @type {number} */ var width = self_.container.offsetWidth || 200;
     /** @type {number} */ var height = self_.container.offsetHeight || width;
 
-    /** @type {!Array.<number>} */ var xAxisColumns = [0];
+    /** @type {!Array.<string>} */ var xAxisColumns = [0];
     /** @type {?number} */ var minY = null;
     /** @type {number} */ var maxY = 0;
     for (/** @type {number} */ var i = 0; i < rows.length; i++) {
