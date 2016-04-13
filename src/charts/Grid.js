@@ -253,7 +253,7 @@ charts.Grid = function(container) {
    */
   function getColumnLabel_(column) {
     if (column instanceof Date) {
-      column = formatters.DateFormatter.format(
+      column = formatters.DateFormatter.formatDate(
           /** @type {Date} */(column), 'YYYY-MM-dd');
     }
     return '' + column;
@@ -301,7 +301,7 @@ charts.Grid = function(container) {
           'text-align:right;margin-top:-' + (font / 2) + 'px;';
     }
     row.innerHTML = '<div style="' + css + '">' +
-                    formatter_.round(label) + '</div>';
+                    formatter_.roundNumber(label) + '</div>';
   }
 
   /**

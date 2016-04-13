@@ -335,14 +335,14 @@ charts.DataTable = function(container) {
         data['type'] = getType_(data, header);
         if ('date' == data['type'] || value instanceof Date) {
           data['type'] = 'date';
-          value = formatters.DateFormatter.format(
+          value = formatters.DateFormatter.formatDate(
               new Date(value),
               /** @type {string} */ (getFormat_(data, header)));
         } else if ('bool' == data['type'] || value === !0 || value === !1) {
           data['type'] = 'bool';
           value = /** @type {Array} */ (getFormat_(data, header))[+!value];
         } else if ('number' == data['type']) {
-          value = formatter_.format(/** @type {number} */ (value));
+          value = formatter_.formatNumber(/** @type {number} */ (value));
         } else {
           value = template_.parse(
               /** @type {string} */ (getFormat_(data, header)), data);

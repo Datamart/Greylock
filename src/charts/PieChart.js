@@ -74,7 +74,7 @@ charts.PieChart = function(container) {
         /** @type {number} */ var angle = 360 * ratio;
         /** @type {number} */ var percent = len > 1 ? angle / 360 * 100 : 100;
         angles.push(angle);
-        tooltips.push(formatter_.format(value) +
+        tooltips.push(formatter_.formatNumber(value) +
             ' (' + percent.toFixed(1) + '%)');
       }
     }

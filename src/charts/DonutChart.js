@@ -97,7 +97,7 @@ charts.DonutChart = function(container) {
   this.getAreaContent = function() {
     /** @type {string} */
     var content = '<div style="color:#666;font-size:22px;margin-bottom:3px;">' +
-                  formatter_.round(getTotal_()) + '</div>' +
+                  formatter_.roundNumber(getTotal_()) + '</div>' +
                   '<div style="color:#B3B0B0;font-size:11px">TOTAL</div>';
     return content;
   };
@@ -157,7 +157,7 @@ charts.DonutChart = function(container) {
    * @private
    */
   function getSvgContent_(x, y, radius) {
-    /** @type {string} */ var result = formatter_.round(getTotal_());
+    /** @type {string} */ var result = formatter_.roundNumber(getTotal_());
     return '<g>' +
         '<circle cx="' + x + '" cy="' + y + '" r="' +
         radius + '" fill="' + options_['donut']['color'] + '"/>' +

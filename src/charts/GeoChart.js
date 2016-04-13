@@ -96,7 +96,8 @@ charts.GeoChart = function(container) {
       var tooltip = '<b>' + getCountryName_(country) + '</b>';
       if (value) {
         tooltip += '<br>' + column + ': ';
-        tooltip += 'number' == typeof value ? formatter_.format(value) : value;
+        tooltip += 'number' == typeof value ?
+            formatter_.formatNumber(value) : value;
       }
       content += (charts.IS_SVG_SUPPORTED ? getSvgContent_ : getVmlContent_)(
           path, tooltip, color, scale, country);

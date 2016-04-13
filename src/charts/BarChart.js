@@ -76,7 +76,7 @@ charts.BarChart = function(container) {
       /** @type {Array} */ var row = rows[i];
       for (/** @type {number} */ var j = 1; j < row.length; j++) {
         /** @type {string} */ var tooltip = self_.tooltip.parse(
-            row[0], columns[j], formatter_.format(row[j]));
+            row[0], columns[j], formatter_.formatNumber(row[j]));
 
         content += getBarContent_(getBarRect_(rows, i, j, range),
                                   options_['colors'][j], tooltip);

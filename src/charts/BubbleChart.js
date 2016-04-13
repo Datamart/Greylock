@@ -77,7 +77,7 @@ charts.BubbleChart = function(container) {
       maxY = Math.max(maxY, row[5]);
       if (minY == null) minY = maxY;
       minY = Math.min(minY, row[5]);
-      xAxisColumns.push(formatter_.format(row[4]));
+      xAxisColumns.push(formatter_.formatNumber(row[4]));
     }
 
     xAxisColumns.sort(function(a, b) {return a - b});
@@ -104,7 +104,7 @@ charts.BubbleChart = function(container) {
     for (/** @type {number} */ var i = 1; i < columns.length; i++)
       if (columns[i])
         result.push(columns[i] + ': <b>' +
-                    formatter_.format(row[i + 3]) + '</b>');
+                    formatter_.formatNumber(row[i + 3]) + '</b>');
       return result.join('<br>');
   }
 

@@ -146,7 +146,7 @@ charts.LineChart = function(container) {
                'height: ' + (options_['radius'] * 2) + 'px;' +
                'border-radius:' + options_['radius'] + 'px;\'>' +
                '</span> ' + rows[j][0] +
-               ': ' + formatter_.format(rows[j][i + 1]);
+               ': ' + formatter_.formatNumber(rows[j][i + 1]);
       }
       tooltips.push(tip);
     }
