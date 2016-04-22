@@ -112,7 +112,7 @@ charts.DonutChart = function(container) {
    * @private
    */
   function setAreaContent_(x, y, radius) {
-    if (!area_) {
+    if (!area_ || !area_.parentNode) {
       var size = Math.sqrt(radius * radius / 2) * 2 - 1;
 
       area_ = self_.container.appendChild(dom.createElement('DIV'));
