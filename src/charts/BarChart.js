@@ -64,6 +64,8 @@ charts.BarChart = function(container) {
     /** @type {number} */ var height = self_.container.offsetHeight || width;
     /** @type {number} */
     var border = /** @type {number} */ (options_['stroke']);
+
+    bars_ = 1; // Reset bars counter for redrawing issue.
     for (/** @type {number} */ var i = 0; i < rows.length; i++) {
       bars_ += rows[i].length;
     }
