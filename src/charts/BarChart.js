@@ -76,12 +76,13 @@ charts.BarChart = function(container) {
     bars_ = 0;
     for (i = 0; i < rows.length; i++) {
       /** @type {Array} */ var row = rows[i];
-      for (/** @type {number} */ var j = 1; j < row.length; j++) {
+      /** @type {number} */ var j = 1;
+      for (; j < row.length; j++) {
         /** @type {string} */ var tooltip = self_.tooltip.parse(
             row[0], columns[j], formatter_.formatNumber(row[j]));
 
         content += getBarContent_(getBarRect_(rows, i, j, range),
-                                  options_['colors'][j], tooltip);
+                                  options_['colors'][j - 1], tooltip);
         bars_++;
       }
 
@@ -351,7 +352,6 @@ charts.BarChart = function(container) {
    * @private
    */
   var bars_ = 1;
-
 
   /**
    * Vertical charts bar width.
