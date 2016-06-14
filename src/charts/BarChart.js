@@ -98,6 +98,24 @@ charts.BarChart = function(container) {
   this['draw'] = this.draw;
 
   /**
+   * Draws content into <code>this.container</code> as <code>innerHTML</code>.
+   * @param {string} content The HTML markup content.
+   * @param {number=} opt_width Optional chart width.
+   * @param {number=} opt_height Optional chart height.
+   * @override
+   */
+  this.drawContent = function(content, opt_width, opt_height) {
+    opt_width = opt_width || self_.container.offsetWidth || 200;
+    opt_height = opt_height || self_.container.offsetHeight || opt_width;
+
+    self_.container.style.position = 'relative';
+    self_.container.style.overflow = 'hidden';
+    self_.container.innerHTML +=
+        '<div style="position:absolute;width:' + opt_width +
+        'px;height:' + opt_height + 'px">' + content + '</div>';
+  };
+
+  /**
    * @param {!Array.<number>} range The data range with min and max values.
    * @private
    */
