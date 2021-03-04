@@ -2,8 +2,8 @@
 /**
  * @fileoverview A base chart tooltip.
  * @version 1.0.0
- * @link http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
- * @link https://developers.google.com/closure/compiler/docs/js-for-compiler
+ * @see https://google.github.io/styleguide/jsguide.html
+ * @see https://github.com/google/closure-compiler/wiki
  */
 
 

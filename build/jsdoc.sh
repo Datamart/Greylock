@@ -13,7 +13,7 @@ readonly JSDOC_JAR="${LIB}/jsdoc-toolkit/jsrun.jar"
 # readonly SRC_PATH="${CWD}/../src/charts/"
 readonly SRC_PATH="../src/charts/"
 readonly DOC_PATH="${CWD}/../docs"
-readonly DOWNLOAD_URL=https://jsdoc-toolkit.googlecode.com/files/jsdoc_toolkit-2.4.0.zip
+readonly DOWNLOAD_URL=https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/jsdoc-toolkit/jsdoc_toolkit-2.4.0.zip
 
 readonly WGET="$(which wget)"
 readonly CURL="$(which curl)"

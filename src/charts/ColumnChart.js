@@ -2,8 +2,8 @@
 /**
  * @fileoverview Simple column chart implementation.
  * @version 1.0.1
- * @link http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
- * @link https://developers.google.com/closure/compiler/docs/js-for-compiler
+ * @see https://google.github.io/styleguide/jsguide.html
+ * @see https://github.com/google/closure-compiler/wiki
  */
 
 
@@ -20,7 +20,7 @@
  *
  * <div id="chart-container"
  *      style="width: 560px; height: 200px; margin: 0 0 20px 20px;"></div>
- * <script src="http://datamart.github.io/Greylock/greylock.js"></script>
+ * <script src="https://greylock.js.org/greylock.js"></script>
  * <script>
  *   var chart = new charts.ColumnChart('chart-container');
  *   chart.draw([['Year', 'Sales', 'Expenses', 'Profit'],
